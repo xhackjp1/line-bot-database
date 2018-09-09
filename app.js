@@ -167,9 +167,9 @@ app.listen(app.get('port'), function() {
     console.log('Node app is running');
 });
 
-function databaseSample(req, message_text) {
+function databaseSample(req, sendword) {
 
-  const words = message_text.split(' ');
+  const words = sendword.split(' ');
 
   if (words[0] === "help" || words[0] === "ヘルプ") {
     // 質問取得
