@@ -67,7 +67,7 @@ app.post('/callback', function(req, res) {
 
       function(req, displayName, message_id, message_type, message_text) {
 
-          databaseSample(message_text);
+          databaseSample(req, message_text);
 
           //var message = "hello, " + displayName + "さん"; // helloと返事する
           //var message = message_text; // おうむ返しする
