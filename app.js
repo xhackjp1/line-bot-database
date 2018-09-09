@@ -7,10 +7,7 @@ var async = require('async');
 
 var sendMessage = require('./sendMessage.js');
 var messageTemplate = require('./messageTemplate.js');
-
 var pgManager = require('./postgresManager.js'); // データベースを使う時に必要
-var weather_api = require('./openWeatherMap.js'); // 天気APIを使う時に必要
-var visualRecognition = require('./IBMImageRecognition.js'); // 画像認識AIを使う時に必要
 
 // utilモジュールを使います。
 var util = require('util');
@@ -76,89 +73,6 @@ app.post('/callback', function(req, res) {
       // データベースを使う
       // databaseSample(req, message_text);
 
-      ///////////////////
-      // 画像で返事をする //
-      ///////////////////
-      /*
-      var messages = ["左上を押した", "右上を押した", "左下を押した", "右下を押した"];
-      if (message_text == "猫") {
-         sendMessage.send(req, [ messageTemplate.imagemapMessage(messages, 'https://i.imgur.com/8cbL5dl.jpg') ]);
-         return;
-      } else if (message_text == "犬") {
-         sendMessage.send(req, [ messageTemplate.imagemapMessage(messages, 'https://i.imgur.com/ph82KWH.jpg') ]);
-         return;
-      } else if (message_text == "鹿") {
-         sendMessage.send(req, [ messageTemplate.imagemapMessage(messages, 'https://i.imgur.com/Z6ilhSI.jpg') ]);
-         return;
-      }
-      */
-      ///////////////////
-      // 画像で返事をする //
-      ///////////////////
-
-      //////////////////
-      // 天気APIパート //
-      /////////////////
-      /*
-      // 天気ときたら東京の天気が返ってくる
-      // APIキーの設定と、ライブラリの読み込みが必要
-      if (message_text === "天気") {
-        weather_api.weather(function (result) {
-          sendMessage.send(req, [ messageTemplate.textMessage(result) ]);
-          return;
-        });
-      // 天気　半角スペース　地名（ローマ字のみ　例：tokyo）でそこの天気が返ってくる
-      } else if (message_text.includes('天気')) {
-        const words = message_text.split(' ')
-        weather_api.weatherWithPlace(words[1], function (result) {
-          sendMessage.send(req, [ messageTemplate.textMessage(result) ]);
-          return;
-        });
-      } else {
-        sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
-        return;
-      }
-      */
-      //////////////////
-      // 天気APIパート //
-      /////////////////
-
-      //////////////////
-      // 画像認識パート //
-      /////////////////
-      /*
-      if (message_type === 'image') {
-
-        // https://qiita.com/n0bisuke/items/17c795fea4c2b5571ce0
-        // 上のLINE Developersドキュメントのコードだとうまくいかない。
-        // chunkにresponseとbodyが一緒に入っている？
-        // encoding: nullが設定されてないから？
-        const options = {
-          url: `https://api.line.me/v2/bot/message/${message_id}/content`,
-          method: 'get',
-          headers: {
-              'Authorization': 'Bearer ' + process.env.LINE_CHANNEL_ACCESS_TOKEN,
-          },
-          encoding: null
-        };
-
-        request(options, function(error, response, body) {
-          if (!error && response.statusCode == 200) {
-            console.log('Got responce');
-            visualRecognition.classify(body, function (result) {
-              sendMessage.send(req, [ messageTemplate.textMessage(result) ]);
-              return;
-            })
-          } else {
-            // @todo handle error
-          }
-        });
-      }
-      */
-      ////////////////////////
-      // 画像認識パートここまで //
-      ////////////////////////
-
       return;
     }
   );
@@ -168,6 +82,7 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running');
 });
 
+// データベースとのやりとりを行う
 function databaseSample(req, sendword) {
 
   const words = sendword.split(' ');
@@ -186,43 +101,43 @@ function databaseSample(req, sendword) {
     return;
   }
 
-  if (words[0] === "add" || words[0] === "追加") {
-    // 質問取得
-    pgManager.add_word(words[1], function(result) {
-      var addText = `「 ${words[1]} 」\n追加しました`;
-      sendMessage.send(req, [messageTemplate.textMessage(addText)]);
-    });
-    return;
-  }
-
-  if (words[0] === "delete" || words[0] === "削除") {
-    // 質問取得
-    pgManager.delete_word(words[1], function(result) {
-      var deleteText = `「 ${words[1]} 」\削除しました`;
-      sendMessage.send(req, [messageTemplate.textMessage(deleteText)]);
-    });
-    return;
-  }
-
-  if (words[0] === "list" || words[0] === "リスト") {
-    // ネタ取得
-    pgManager.get_words(function(result) {
-
-      if (result.rowCount === 0) {
-        sendMessage.send(req, [messageTemplate.textMessage("データはカラよ")]);
-        return;
-      }
-      var allwords = "";
-      var cnt;
-      for (cnt = 0; cnt < result.rowCount; cnt++) {
-        var r = result.rows[cnt];
-        console.log(r.word);
-        allwords += r.id + ":" + r.word + "\n";
-      }
-      sendMessage.send(req, [messageTemplate.textMessage(allwords)]);
-    });
-    return;
-  }
+  // if (words[0] === "add" || words[0] === "追加") {
+  //   // 質問取得
+  //   pgManager.add_word(words[1], function(result) {
+  //     var addText = `「 ${words[1]} 」\n追加しました`;
+  //     sendMessage.send(req, [messageTemplate.textMessage(addText)]);
+  //   });
+  //   return;
+  // }
+  //
+  // if (words[0] === "delete" || words[0] === "削除") {
+  //   // 質問取得
+  //   pgManager.delete_word(words[1], function(result) {
+  //     var deleteText = `「 ${words[1]} 」\削除しました`;
+  //     sendMessage.send(req, [messageTemplate.textMessage(deleteText)]);
+  //   });
+  //   return;
+  // }
+  //
+  // if (words[0] === "list" || words[0] === "リスト") {
+  //   // ネタ取得
+  //   pgManager.get_words(function(result) {
+  //
+  //     if (result.rowCount === 0) {
+  //       sendMessage.send(req, [messageTemplate.textMessage("データはカラよ")]);
+  //       return;
+  //     }
+  //     var allwords = "";
+  //     var cnt;
+  //     for (cnt = 0; cnt < result.rowCount; cnt++) {
+  //       var r = result.rows[cnt];
+  //       console.log(r.word);
+  //       allwords += r.id + ":" + r.word + "\n";
+  //     }
+  //     sendMessage.send(req, [messageTemplate.textMessage(allwords)]);
+  //   });
+  //   return;
+  // }
 
   // ネタ取得
   pgManager.get_words(function(result) {
