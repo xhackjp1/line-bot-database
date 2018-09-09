@@ -10,7 +10,7 @@ var messageTemplate = require('./messageTemplate.js');
 
 // var pgManager = require('./postgresManager.js'); // データベースを使う時に必要
 // var weather_api = require('./openWeatherMap.js'); // 天気APIを使う時に必要
-// var visualRecognition = require('./IBMImageRecognition.js'); // 画像認識AIを使う時に必要
+var visualRecognition = require('./IBMImageRecognition.js'); // 画像認識AIを使う時に必要
 
 // utilモジュールを使います。
 var util = require('util');
