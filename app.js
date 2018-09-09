@@ -67,11 +67,11 @@ app.post('/callback', function(req, res) {
 
     function(req, displayName, message_id, message_type, message_text) {
 
-      var message = "hello, " + displayName + "さん"; // helloと返事する
+      //var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
 
-      sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
+      //sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
 
       ///////////////////
       // 画像で返事をする //
@@ -123,7 +123,7 @@ app.post('/callback', function(req, res) {
       //////////////////
       // 画像認識パート //
       /////////////////
-      /*
+
       if (message_type === 'image') {
 
         // https://qiita.com/n0bisuke/items/17c795fea4c2b5571ce0
@@ -151,7 +151,7 @@ app.post('/callback', function(req, res) {
           }
         });
       }
-      */
+
       ////////////////////////
       // 画像認識パートここまで //
       ////////////////////////
