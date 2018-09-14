@@ -122,7 +122,9 @@ function databaseSample(req, sendword) {
 
     var r = result.rows[randomId];
     //console.log(array[Math.floor(Math.random() * array.length)]);
-    sendMessage.send(req, [messageTemplate.textMessage(r.choice1)]);
+    //sendMessage.send(req, [messageTemplate.textMessage(r.choice1)]);
+    
+    sendMessage.send(req, [ messageTemplate.imagemapMessage([r.choice1, r.choice2, r.choice3, r.choice4], 'https://i.imgur.com/8cbL5dl.jpg') ]);
   });
 }
 
