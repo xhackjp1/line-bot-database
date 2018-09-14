@@ -87,40 +87,8 @@ function databaseSample(req, sendword) {
 
   const words = sendword.split(' ');
 
-  if (words[0] === "help" || words[0] === "ヘルプ") {
-    // 質問取得
-    let helpMessage1 = "'add [任意の文章]' と打つと 文章が追加されます";
-    let helpMessage2 = "'list' と打つと 一覧が表示されます";
-    let helpMessage3 = "'delete [削除するID]' と打つと 削除されます ID は 'list'で確認できます";
-
-    sendMessage.send(req, [
-      messageTemplate.textMessage(helpMessage1),
-      messageTemplate.textMessage(helpMessage2),
-      messageTemplate.textMessage(helpMessage3)
-    ]);
-    return;
-  }
-
-   if (words[0] === "add" || words[0] === "追加") {
-     // 質問取得
-     pgManager.add_word(words[1], function(result) {
-       var addText = `「 ${words[1]} 」\n追加しました`;
-       sendMessage.send(req, [messageTemplate.textMessage(addText)]);
-     });
-     return;
-   }
-  
-  // if (words[0] === "delete" || words[0] === "削除") {
-  //   // 質問取得
-  //   pgManager.delete_word(words[1], function(result) {
-  //     var deleteText = `「 ${words[1]} 」\削除しました`;
-  //     sendMessage.send(req, [messageTemplate.textMessage(deleteText)]);
-  //   });
-  //   return;
-  // }
-  //
    if (words[0] === "list" || words[0] === "リスト") {
-     // ネタ取得
+     // クイズ取得
      pgManager.get_words(function(result) {
   
        if (result.rowCount === 0) {
@@ -153,7 +121,7 @@ function databaseSample(req, sendword) {
     console.log("検索ID" + randomId);
 
     var r = result.rows[randomId];
-    sendMessage.send(req, [messageTemplate.textMessage(r.word)]);
+    sendMessage.send(req, [messageTemplate.textMessage(r.choice1)]);
   });
 }
 
