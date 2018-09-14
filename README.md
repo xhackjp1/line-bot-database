@@ -91,7 +91,7 @@ https://codenvy.io/site/login
 ### STEP-2 PROJECTSでGitURLを指定する
 
 - 以下のURLをコピペして貼り付けましょう
-`https://github.com/x-hack-git/line-messaging-api.git`
+`https://github.com/x-hack-git/line-bot-database`
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/select_repo.png" max-height="320px">
 
 ### STEP-3 heroku CLI のインストール
