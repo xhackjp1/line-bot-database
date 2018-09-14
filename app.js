@@ -117,10 +117,11 @@ function databaseSample(req, sendword) {
       sendMessage.send(req, [messageTemplate.textMessage("データはありません")]);
       return;
     }
-    var randomId = getRandomInt(result.rowCount) - 1;
+    var randomId = Math.floor(Math.random() * result.rowCount);
     console.log("検索ID" + randomId);
 
     var r = result.rows[randomId];
+    //console.log(array[Math.floor(Math.random() * array.length)]);
     sendMessage.send(req, [messageTemplate.textMessage(r.choice1)]);
   });
 }
