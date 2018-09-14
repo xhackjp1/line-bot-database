@@ -119,25 +119,25 @@ function databaseSample(req, sendword) {
   //   return;
   // }
   //
-  // if (words[0] === "list" || words[0] === "リスト") {
-  //   // ネタ取得
-  //   pgManager.get_words(function(result) {
-  //
-  //     if (result.rowCount === 0) {
-  //       sendMessage.send(req, [messageTemplate.textMessage("データはカラよ")]);
-  //       return;
-  //     }
-  //     var allwords = "";
-  //     var cnt;
-  //     for (cnt = 0; cnt < result.rowCount; cnt++) {
-  //       var r = result.rows[cnt];
-  //       console.log(r.word);
-  //       allwords += r.id + ":" + r.word + "\n";
-  //     }
-  //     sendMessage.send(req, [messageTemplate.textMessage(allwords)]);
-  //   });
-  //   return;
-  // }
+   if (words[0] === "list" || words[0] === "リスト") {
+     // ネタ取得
+     pgManager.get_words(function(result) {
+  
+       if (result.rowCount === 0) {
+         sendMessage.send(req, [messageTemplate.textMessage("データはカラよ")]);
+         return;
+       }
+       var allwords = "";
+       var cnt;
+       for (cnt = 0; cnt < result.rowCount; cnt++) {
+         var r = result.rows[cnt];
+         console.log(r.word);
+         allwords += r.id + ":" + r.word + "\n";
+       }
+       sendMessage.send(req, [messageTemplate.textMessage(allwords)]);
+     });
+     return;
+   }
 
   // ネタ取得
   pgManager.get_words(function(result) {
