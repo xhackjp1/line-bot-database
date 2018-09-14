@@ -87,42 +87,21 @@ function databaseSample(req, sendword) {
 
   const words = sendword.split(' ');
 
-   if (words[0] === "list" || words[0] === "リスト") {
-     // クイズ取得
-     pgManager.get_words(function(result) {
-  
-       if (result.rowCount === 0) {
-         sendMessage.send(req, [messageTemplate.textMessage("データはカラよ")]);
-         return;
-       }
-       var allwords = "";
-       var cnt;
-       for (cnt = 0; cnt < result.rowCount; cnt++) {
-         var r = result.rows[cnt];
-         console.log(r.word);
-         allwords += r.id + ":" + r.word + "\n";
-       }
-       sendMessage.send(req, [messageTemplate.textMessage(allwords)]);
-     });
-     return;
-   }
-
   // ネタ取得
   pgManager.get_words(function(result) {
+    
     // inspectで中身を見ることができます。
-    console.log(util.inspect(result));
-    console.log(result.rowCount);
+    // console.log(util.inspect(result));
+    // console.log(result.rowCount);
 
     if (result.rowCount === 0) {
       sendMessage.send(req, [messageTemplate.textMessage("データはありません")]);
       return;
     }
+    
     var randomId = Math.floor(Math.random() * result.rowCount);
     console.log("検索ID" + randomId);
-
     var r = result.rows[randomId];
-    //console.log(array[Math.floor(Math.random() * array.length)]);
-    //sendMessage.send(req, [messageTemplate.textMessage(r.choice1)]);
     
     sendMessage.send(req, [ messageTemplate.imagemapMessage([r.choice1, r.choice2, r.choice3, r.choice4], 'https://i.imgur.com/8cbL5dl.jpg') ]);
   });
