@@ -12,7 +12,7 @@ client.connect(function(err) {
 
 exports.get_words = function(callback) {
 
-  var query = `select id, word from quiz;`;
+  var query = `select id, choice1, choice2, choice3, choice4 from quiz;`;
   client.query(
     query,
     function(err, result) {
