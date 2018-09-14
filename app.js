@@ -101,15 +101,15 @@ function databaseSample(req, sendword) {
     return;
   }
 
-  // if (words[0] === "add" || words[0] === "追加") {
-  //   // 質問取得
-  //   pgManager.add_word(words[1], function(result) {
-  //     var addText = `「 ${words[1]} 」\n追加しました`;
-  //     sendMessage.send(req, [messageTemplate.textMessage(addText)]);
-  //   });
-  //   return;
-  // }
-  //
+   if (words[0] === "add" || words[0] === "追加") {
+     // 質問取得
+     pgManager.add_word(words[1], function(result) {
+       var addText = `「 ${words[1]} 」\n追加しました`;
+       sendMessage.send(req, [messageTemplate.textMessage(addText)]);
+     });
+     return;
+   }
+  
   // if (words[0] === "delete" || words[0] === "削除") {
   //   // 質問取得
   //   pgManager.delete_word(words[1], function(result) {
