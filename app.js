@@ -104,7 +104,7 @@ function databaseSample(req, sendword) {
     var r = result.rows[randomId];
     console.log(util.inspect(r));
     
-    sendMessage.send(req, [ messageTemplate.imagemapMessage([r.choice1, r.choice2, r.choice3, r.choice4], r.imageUrl ) ]);
+    sendMessage.send(req, [ messageTemplate.imagemapMessage([r.choice1, r.choice2, r.choice3, r.choice4], r.imageurl ) ]);
   });
 }
 
