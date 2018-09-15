@@ -102,6 +102,7 @@ function databaseSample(req, sendword) {
     var randomId = Math.floor(Math.random() * result.rowCount);
     console.log("検索ID" + randomId);
     var r = result.rows[randomId];
+    console.log(util.inspect(r));
     
     sendMessage.send(req, [ messageTemplate.imagemapMessage([r.choice1, r.choice2, r.choice3, r.choice4], r.imageUrl ) ]);
   });
