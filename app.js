@@ -86,6 +86,12 @@ app.listen(app.get('port'), function() {
 function databaseSample(req, sendword) {
 
   const words = sendword.split(' ');
+  
+  if(words[0] === '答:')
+  {
+    var message = "間違いです";
+    sendMessage.send(req, [messageTemplate.textMessage(message)]);
+  }
 
   // ネタ取得
   pgManager.get_words(function(result) {
