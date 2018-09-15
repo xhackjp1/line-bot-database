@@ -11,7 +11,7 @@ CREATE TABLE quiz(
 );
 
 // データ追加
-INSERT INTO quiz (id, choice1, choice2, choice3, choice4, imageurl) VALUES (1, '選択肢1', '選択肢2', '選択肢3', '選択肢4', '');
+INSERT INTO quiz (id, choice1, choice2, choice3, choice4, imageurl) VALUES (1, '選択肢1', '選択肢2', '選択肢3', '選択肢4', 'https://i.imgur.com/vVJH42Q.jpg');
 
 // データ更新(個別)
 UPDATE quiz SET imageUrl = 'https://i.imgur.com/VHPy9jo.jpg' WHERE id = 1;

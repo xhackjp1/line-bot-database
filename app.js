@@ -64,13 +64,13 @@ app.post('/callback', function(req, res) {
 
     function(req, displayName, message_id, message_type, message_text) {
 
-      //var message = "hello, " + displayName + "さん"; // helloと返事する
+      var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
-      //sendMessage.send(req, [messageTemplate.textMessage(message)]);
+      sendMessage.send(req, [messageTemplate.textMessage(message)]);
 
       // データベースを使う
-      databaseSample(req, message_text);
+      //databaseSample(req, message_text);
 
       return;
     }
@@ -94,10 +94,6 @@ function databaseSample(req, sendword) {
 
   // ネタ取得
   pgManager.get_words(function(result) {
-    
-    // inspectで中身を見ることができます。
-    // console.log(util.inspect(result));
-    // console.log(result.rowCount);
 
     if (result.rowCount === 0) {
       sendMessage.send(req, [messageTemplate.textMessage("データはありません")]);
@@ -105,9 +101,9 @@ function databaseSample(req, sendword) {
     }
     
     var randomId = Math.floor(Math.random() * result.rowCount);
-    console.log("検索ID" + randomId);
+    //console.log("検索ID" + randomId);
     var r = result.rows[randomId];
-    console.log(util.inspect(r));
+    //console.log(util.inspect(r));
     
     sendMessage.send(req, [ messageTemplate.imagemapMessage([r.choice1, r.choice2, r.choice3, r.choice4], r.imageurl ) ]);
   });
