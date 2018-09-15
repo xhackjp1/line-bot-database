@@ -103,7 +103,7 @@ function databaseSample(req, sendword) {
     console.log("検索ID" + randomId);
     var r = result.rows[randomId];
     
-    sendMessage.send(req, [ messageTemplate.imagemapMessage([r.choice1, r.choice2, r.choice3, r.choice4], 'https://i.imgur.com/8cbL5dl.jpg') ]);
+    sendMessage.send(req, [ messageTemplate.imagemapMessage([r.choice1, r.choice2, r.choice3, r.choice4], r.imgUrl ) ]);
   });
 }
 
