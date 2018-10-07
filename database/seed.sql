@@ -2,7 +2,7 @@
 
 // テーブル追加
 CREATE TABLE quiz(
-   id INT PRIMARY KEY NOT NULL,
+   id SERIAL,
    choice1 TEXT NOT NULL,
    choice2 TEXT NOT NULL,
    choice3 TEXT NOT NULL,
