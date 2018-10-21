@@ -1,6 +1,19 @@
 // mysqlworkbenchなどのように、エクセルのようにデータを扱えるツールもあります
 // テーブル名を「quiz」にした場合の例です、大文字は定数で、小文字は任意の文字列です
 
+// 下記のコマンドでcodenvyにpostgresqlをinstallする
+$ npm install psql
+$ sudo apt-get install postgresql
+
+// 自信のHerokuのダッシュボードから確認してデータベースを使用する
+$ heroku pg:psql postgresql-aerodynamic-xxxxx --app xxxxxxx
+
+// 下記のようにターミナルが切り替わればok
+xxxxxxxx::DATABASE=>
+
+// データベースを終了する
+xxxxxxxx::DATABASE=> \q
+
 // テーブル追加
 CREATE TABLE quiz(
    id SERIAL,
