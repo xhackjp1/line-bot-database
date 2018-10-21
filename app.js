@@ -69,11 +69,12 @@ app.post('/callback', function(req, res) {
       var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
-      // データベースを使う場合、下記のコードはコメントアウトしてください
-      //sendMessage.send(req, [messageTemplate.textMessage(message)]);
 
-      // データベースを使って返信する
-      databaseSample(req, message_text);
+      // データベースを使う場合、下記のコードはコメントアウトしてください
+      sendMessage.send(req, [messageTemplate.textMessage(message)]);
+
+      // データベースを使って返信する場合、こちらのコメントを解除してください
+      //databaseSample(req, message_text);
 
       return;
     }
@@ -99,10 +100,12 @@ function databaseSample(req, sendword) {
     var randomId = getRandomInt(result.rowCount);
     var r = result.rows[randomId];
 
+    // 送信データを生成し、送信する
     sendMessage.send(req, [
       messageTemplate.imagemapMessage(
         [r.choice1, r.choice2, r.choice3, r.choice4],
-        r.imageurl)
+        r.imageurl
+      )
     ]);
   });
 }
