@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
+  // herokuのルートディレクトリにアクセスした時に表示される
   res.send('<h1>hello world</h1>');
 });
 
@@ -62,6 +63,7 @@ app.post('/callback', function(req, res) {
       },
     ],
 
+    // 返事を生成する関数
     function(req, displayName, message_id, message_type, message_text) {
 
       var message = "hello, " + displayName + "さん"; // helloと返事する
@@ -69,7 +71,7 @@ app.post('/callback', function(req, res) {
       //var message = message_text + "[" + message_text.length + "文字]";
       sendMessage.send(req, [messageTemplate.textMessage(message)]);
 
-      // データベースを使う
+      // データベースを使って返信する
       //databaseSample(req, message_text);
 
       return;
@@ -81,44 +83,35 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running');
 });
 
-// データベースとのやりとりを行う
+// 実際にデータベースとのやりとりを行う
 function databaseSample(req, sendword) {
 
-  const words = sendword.split(' ');
-  
-  if(words[0] === '答:')
-  {
-    var message = "間違いです";
-    sendMessage.send(req, [messageTemplate.textMessage(message)]);
-  }
-
-  // ネタ取得
+  // データベースにアクセスする
   pgManager.get_words(function(result) {
 
     if (result.rowCount === 0) {
       sendMessage.send(req, [messageTemplate.textMessage("データはありません")]);
       return;
     }
-    
-    var randomId = Math.floor(Math.random() * result.rowCount);
-    //console.log("検索ID" + randomId);
+
+    // ランダムに一件データを取得する
+    var randomId = getRandomInt(result.rowCount);
     var r = result.rows[randomId];
-    //console.log(util.inspect(r));
-    
-    sendMessage.send(req, [ messageTemplate.imagemapMessage([r.choice1, r.choice2, r.choice3, r.choice4], r.imageurl ) ]);
+
+    sendMessage.send(req, [
+      messageTemplate.imagemapMessage(
+        [r.choice1, r.choice2, r.choice3, r.choice4],
+        r.imageurl)
+    ]);
   });
 }
 
-// メッセージの長さを返す
-function textcount(body) {
-  return body.length;
-}
-
-// ランダムな数値を取得する
+// 引数に指定した値以下のランダムな数値を取得する
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+// LINE Userのプロフィールを取得する
 function getProfileOption(user_id) {
   return {
     url: 'https://api.line.me/v2/bot/profile/' + user_id,

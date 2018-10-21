@@ -1,4 +1,6 @@
-const { Client } = require('pg');
+const {
+  Client
+} = require('pg');
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
@@ -10,6 +12,7 @@ client.connect(function(err) {
   }
 });
 
+//
 exports.get_words = function(callback) {
 
   var query = `select id, choice1, choice2, choice3, choice4, imageUrl from quiz;`;
@@ -23,3 +26,11 @@ exports.get_words = function(callback) {
     }
   );
 }
+
+// exports.add_words = function(callback) {
+//
+// }
+
+// exports.delete_words = function(callback) {
+//
+// }
