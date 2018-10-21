@@ -15,6 +15,7 @@
     "pg": "^7.5.0",
     "psql": "0.0.1",
     "request": "^2.75.0",
-    "watson-developer-cloud": "^3.11.1"
+    "watson-developer-cloud": "^3.11.1",
+    "cryptiles": ">=4.1.2",
   }
 }
