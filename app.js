@@ -69,10 +69,11 @@ app.post('/callback', function(req, res) {
       var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
-      sendMessage.send(req, [messageTemplate.textMessage(message)]);
+      // データベースを使う場合、下記のコードはコメントアウトしてください
+      //sendMessage.send(req, [messageTemplate.textMessage(message)]);
 
       // データベースを使って返信する
-      //databaseSample(req, message_text);
+      databaseSample(req, message_text);
 
       return;
     }

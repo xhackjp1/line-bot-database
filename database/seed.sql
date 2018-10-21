@@ -12,7 +12,9 @@ CREATE TABLE quiz(
 );
 
 // データ追加
-INSERT INTO quiz (id, choice1, choice2, choice3, choice4, imageurl) 
+// 画像URLはhttpではなく、https(SSL通信)のものを用意してください
+// https://imgur.com/ にアップすると手軽にhttpsの画像を取得できます
+INSERT INTO quiz (id, choice1, choice2, choice3, choice4, imageurl)
 VALUES (1, '選択肢1', '選択肢2', '選択肢3', '選択肢4', 'https://i.imgur.com/vVJH42Q.jpg');
 
 // データ更新(個別)
