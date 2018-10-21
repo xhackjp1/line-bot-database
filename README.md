@@ -104,14 +104,13 @@ https://codenvy.io/site/login
 # herokuと連携し、LINE Developersで取得した値をherokuにセットする
 
 ```
-$ cd line-messaging-api
+$ cd line-bot-database
 
 $ curl https://cli-assets.heroku.com/install.sh | sh
 
 $ heroku login
 $ heroku git:remote -a [アプリ名]
-$ heroku config:set LINE_CHANNEL_SECRET="[チャンネルシークレット]"
-$ heroku config:set LINE_CHANNEL_ACCESS_TOKEN="[チャンネルアクセストークン]"
+
 ```
 
 ---
