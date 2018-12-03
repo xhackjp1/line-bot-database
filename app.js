@@ -7,7 +7,7 @@ var async = require('async');
 
 var sendMessage = require('./sendMessage.js');
 var messageTemplate = require('./messageTemplate.js');
-var pgManager = require('./postgresManager.js'); // データベースを使う時に必要
+//var pgManager = require('./postgresManager.js'); // データベースを使う時に必要
 
 // utilモジュールを使います。
 var util = require('util');
