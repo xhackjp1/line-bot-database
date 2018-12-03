@@ -15,7 +15,7 @@ https://id.heroku.com/login
 
 - ログイン
 - herokuアプリを一つ作成
-- herokuアプリ名を確認する
+- `herokuアプリ名`を確認する -- A
 
 # LINE Developers アカウント
 
@@ -29,7 +29,7 @@ https://developers.line.me/ja/
 - Channel Secretの取得
 - アクセストークン（ロングターム）の再発行
 - Webhook送信 `利用する`に設定
-- Webhook URLをセットする `https://<herokuアプリ名>.herokuapp.com/callback`
+- Webhook URLをセットする `https://<herokuアプリ名>.herokuapp.com/callback` Aを設定
 
 # codenvy アカウント
 
@@ -51,10 +51,12 @@ https://codenvy.io/site/login
 4. heroku CLI のインストール
 `$ curl https://cli-assets.heroku.com/install.sh | sh`
 5. プロジェクトディレクトリへ移動 
-`$cd line-bot-database`
 
+```
+$cd line-bot-database
 $ heroku login --interactive
 $ sh git.sh
+```
 
 # コードを修正してherokuにpushする
 ```
