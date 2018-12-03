@@ -47,11 +47,14 @@ https://codenvy.io/site/login
 1. サイドバーからcreate workspaceを選択
 2. STACKを選択 - Node
 3. GitURLを指定する
-`https://github.com/x-hack-git/line-bot-database`
+```
+https://github.com/x-hack-git/line-bot-database
+```
 4. heroku CLI のインストール
-`$ curl https://cli-assets.heroku.com/install.sh | sh`
-5. プロジェクトディレクトリへ移動 
-
+```
+$ curl https://cli-assets.heroku.com/install.sh | sh
+```
+5. プロジェクトディレクトリへ移動して、heorkuへログイン
 ```
 $ cd line-bot-database
 $ heroku login --interactive
