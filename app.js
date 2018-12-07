@@ -71,7 +71,8 @@ app.post('/callback', function(req, res) {
       //var message = message_text + "[" + message_text.length + "文字]";
 
       // データベースを使う場合、下記のコードはコメントアウトしてください
-      sendMessage.send(req, [messageTemplate.textMessage(message)]);
+      sendMessage.send(req, [messageTemplate.textMessage(message), messageTemplate.quickMessage()]);
+      
 
       // データベースを使って返信する場合、こちらのコメントを解除してください
       //databaseSample(req, message_text);
