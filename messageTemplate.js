@@ -107,17 +107,16 @@ exports.quickMessage = function(questionText) {
 
 exports.flexMessage = function() {
   return {
-    "type": "bubble", // ①
-    "body": { // ②
-      "type": "box", // ③
-      "layout": "horizontal", // ④
-      "contents": [ // ⑤
-        {
-          "type": "text", // ⑥
+    "type": "bubble",
+    "body": {
+      "type": "box",
+      "layout": "horizontal",
+      "contents": [{
+          "type": "text",
           "text": "Hello,"
         },
         {
-          "type": "text", // ⑥
+          "type": "text",
           "text": "World!"
         }
       ]
