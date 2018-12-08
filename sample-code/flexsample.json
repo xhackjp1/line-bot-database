@@ -1,0 +1,145 @@
+{
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "https://linecorp.com"
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "action": {
+      "type": "uri",
+      "uri": "https://linecorp.com"
+    },
+    "contents": [
+      {
+        "type": "text",
+        "wrap": true,
+        "text": "マツダマツダマツダマツダマツダマツダマツダマツダマツダマツダ",
+        "size": "md"
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "text",
+            "text": "1",
+            "flex": 1
+          },
+          {
+            "type": "text",
+            "text": "りんご",
+            "weight": "bold",
+            "flex": 6
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "text",
+            "text": "2",
+            "flex": 1
+          },
+          {
+            "type": "text",
+            "text": "みかん",
+            "weight": "bold",
+            "flex": 6
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "text",
+            "text": "3",
+            "flex": 1
+          },
+          {
+            "type": "text",
+            "text": "バナナ",
+            "weight": "bold",
+            "flex": 6
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "text",
+            "text": "4",
+            "flex": 1
+          },
+          {
+            "type": "text",
+            "text": "パイナップル",
+            "weight": "bold",
+            "flex": 6
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#30A9DE",
+        "action": {
+          "type": "message",
+          "label": "1",
+          "text": "https://linecorp.com"
+        }
+      },
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#EFDC05",
+        "action": {
+          "type": "message",
+          "label": "2",
+          "text": "https://linecorp.com"
+        }
+      },
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#E53A40",
+        "action": {
+          "type": "message",
+          "label": "3",
+          "text": "https://linecorp.com"
+        }
+      },
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#5CAB7D",
+        "action": {
+          "type": "message",
+          "label": "4",
+          "text": "https://linecorp.com"
+        }
+      }
+    ]
+  }
+}
