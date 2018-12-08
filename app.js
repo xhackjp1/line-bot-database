@@ -75,9 +75,10 @@ app.post('/callback', function(req, res) {
 
       // flexメッセージを使う
       var title = "質問";
+      var imageUrl = "https://pics.prcm.jp/2d801321d0793/72139800/jpeg/72139800.jpeg";
       var qustions = ["選択肢1", "選択肢2", "選択肢3", "選択肢4"];
       var answers = ["回答1", "回答2", "回答3", "回答4"];
-      sendMessage.send(req, [messageTemplate.customQuestionMessage(title, qustions, answers)]);
+      sendMessage.send(req, [messageTemplate.customQuestionMessage(title, imageUrl, qustions, answers)]);
 
       // データベースを使って返信する場合、こちらのコメントを解除してください
       //databaseSample(req, message_text);
