@@ -5,9 +5,9 @@ var request = require('request');
 var crypto = require("crypto");
 var async = require('async');
 
-var sendMessage = require('./sendMessage.js');
-var messageTemplate = require('./messageTemplate.js');
-//var pgManager = require('./postgresManager.js'); // データベースを使う時に必要
+var sendMessage = require('lib/sendMessage.js');
+var messageTemplate = require('lib/messageTemplate.js');
+//var pgManager = require('lib/postgresManager.js'); // データベースを使う時に必要
 
 // utilモジュールを使います。
 var util = require('util');
@@ -72,9 +72,9 @@ app.post('/callback', function(req, res) {
 
       // データベースを使う場合、下記のコードはコメントアウトしてください
       //sendMessage.send(req, [messageTemplate.textMessage(message), messageTemplate.quickMessage("質問に答えてね！")]);
-      
+
       sendMessage.send(req, [messageTemplate.flexMessage2()]);
-            
+
       // データベースを使って返信する場合、こちらのコメントを解除してください
       //databaseSample(req, message_text);
 

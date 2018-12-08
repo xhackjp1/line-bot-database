@@ -5,7 +5,7 @@
 $ npm install psql
 $ sudo apt-get install postgresql
 
-// 自信のHerokuのダッシュボードから確認してデータベースを使用する
+// 自分のHerokuのダッシュボードから確認してデータベースを使用する
 $ heroku pg:psql postgresql-aerodynamic-xxxxx --app xxxxxxx
 
 // 下記のようにターミナルが切り替わればok
