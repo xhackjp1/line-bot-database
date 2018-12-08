@@ -70,18 +70,20 @@ app.post('/callback', function(req, res) {
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
 
+      sendMessage.send(req, [messageTemplate.textMessage(message)]);
+
       // データベースを使う場合、下記のコードはコメントアウトしてください
       //sendMessage.send(req, [messageTemplate.textMessage(message), messageTemplate.quickMessage("質問に答えてね！")]);
 
       // // flexメッセージを使う
       // var title = "質問";
       // var imageUrl = "https://pics.prcm.jp/2d801321d0793/72139800/jpeg/72139800.jpeg";
-      // var qustions = ["選択肢1", "選択肢2", "選択肢3", "選択肢4"];
+      // var choices = ["選択肢1", "選択肢2", "選択肢3", "選択肢4"];
       // var answers = ["回答1", "回答2", "回答3", "回答4"];
-      // sendMessage.send(req, [messageTemplate.customQuestionMessage(title, imageUrl, qustions, answers)]);
+      // sendMessage.send(req, [messageTemplate.customQuestionMessage(title, imageUrl, choices, answers)]);
 
       // データベースを使って返信する場合、こちらのコメントを解除してください
-      databaseSample(req, message_text);
+      //databaseSample(req, message_text);
 
       return;
     }
@@ -111,9 +113,9 @@ function databaseSample(req, sendword) {
     sendMessage.send(req, [
       messageTemplate.customQuestionMessage(
         r.question_text,
+        r.imageurl,
         [r.choice1, r.choice2, r.choice3, r.choice4],
-        [r.answer1, r.answer2, r.answer3, r.answer4],
-        r.imageurl
+        [r.answer1, r.answer2, r.answer3, r.answer4]
       )
     ]);
   });
