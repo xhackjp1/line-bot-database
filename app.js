@@ -73,7 +73,7 @@ app.post('/callback', function(req, res) {
       // データベースを使う場合、下記のコードはコメントアウトしてください
       //sendMessage.send(req, [messageTemplate.textMessage(message), messageTemplate.quickMessage("質問に答えてね！")]);
       
-      sendMessage.send(req, [messageTemplate.flexMessage()]);
+      sendMessage.send(req, [messageTemplate.flexMessage2()]);
             
       // データベースを使って返信する場合、こちらのコメントを解除してください
       //databaseSample(req, message_text);
