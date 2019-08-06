@@ -26,7 +26,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/index', function(request, response) {
-  response.sendFile('views/index.html');
+  response.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
 // async.waterfall([function(){}], function(){})
