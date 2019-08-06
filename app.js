@@ -25,41 +25,49 @@ app.get('/', function(req, res) {
   res.send('<h1>hello world</h1>');
 });
 
+app.get('/index', function(request, response) {
+  response.sendFile('views/index.html');
+});
+
 // async.waterfall([function(){}], function(){})
 app.post('/callback', function(req, res) {
   async.waterfall([
       function(callback) {
+
+        let event_data = req.body['events'][0];
+
         // リクエストがLINE Platformから送られてきたか確認する
         if (!validate_signature(req.headers['x-line-signature'], req.body)) {
           return;
         }
         // テキストか画像が送られてきた場合のみ返事をする
         if (
-          (req.body['events'][0]['type'] != 'message') ||
-          ((req.body['events'][0]['message']['type'] != 'text') &&
-            (req.body['events'][0]['message']['type'] != 'image'))
+          (event_data['type'] != 'message') ||
+          ((event_data['message']['type'] != 'text') &&
+            (event_data['message']['type'] != 'image'))
         ) {
           return;
         }
 
         // 特定の単語に反応させたい場合
-        //if (req.body['events'][0]['message']['text'].indexOf('please input some word') == -1) {
+        //if (event_data['message']['text'].indexOf('please input some word') == -1) {
         //    return;
         //}
 
         // ユーザIDを取得する
-        var user_id = req.body['events'][0]['source']['userId'];
-        var message_id = req.body['events'][0]['message']['id'];
+        var user_id = event_data['source']['userId'];
+        var message_id = event_data['message']['id'];
         // 'text', 'image' ...
-        var message_type = req.body['events'][0]['message']['type'];
-        var message_text = req.body['events'][0]['message']['text'];
-        if (req.body['events'][0]['source']['type'] == 'user') {
-          request.get(getProfileOption(user_id), function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-              callback(req, body['displayName'], message_id, message_type, message_text);
-            }
-          });
-        }
+        var message_type = event_data['message']['type'];
+        var message_text = event_data['message']['text'];
+
+        if (event_data['source']['type'] != 'user') return;
+
+        request.get(getProfileOption(user_id), function(error, response, body) {
+          if (!error && response.statusCode == 200) {
+            callback(req, body['displayName'], message_id, message_type, message_text);
+          }
+        });
       },
     ],
 
@@ -88,10 +96,6 @@ app.post('/callback', function(req, res) {
       return;
     }
   );
-});
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running');
 });
 
 // 実際にデータベースとのやりとりを行う
@@ -125,6 +129,10 @@ function databaseSample(req, sendword) {
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running');
+});
 
 // LINE Userのプロフィールを取得する
 function getProfileOption(user_id) {
