@@ -31,6 +31,10 @@ app.get('/index', function(request, response) {
   response.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
+app.get('/home', function(request, response) {
+  response.sendFile(path.join(__dirname + '/views/home.html'));
+});
+
 // async.waterfall([function(){}], function(){})
 app.post('/callback', function(req, res) {
   async.waterfall([
