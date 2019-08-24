@@ -104,10 +104,10 @@ app.post('/callback', function(req, res) {
       // 住所 改行 キーワード
       // のフォーマットでメッセージを送ってください
       gnavi.api(req.body, message_text, function(result) {
-        var text = result['name'] + "\n" + result['address'];
+        var text = "おはようございます"; //result['name'] + "\n" + result['address'];
         sendMessage.send(req, [
-          messageTemplate.textMessage(text),
-          messageTemplate.imageMessage(result['shop_image1'], result['shop_image1'])
+          messageTemplate.textMessage(text)
+          //messageTemplate.imageMessage(result['shop_image1'], result['shop_image1'])
         ]);
         return;
       });
