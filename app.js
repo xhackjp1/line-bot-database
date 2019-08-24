@@ -83,7 +83,7 @@ app.post('/callback', function(req, res) {
       // var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
-      sendMessage.send(req, [messageTemplate.textMessage("おはよう")]);
+      sendMessage.send(req, [messageTemplate.textMessage(message_text)]);
 
       // データベースを使う場合、下記のコードはコメントアウトしてください
       //sendMessage.send(req, [messageTemplate.textMessage(message), messageTemplate.quickMessage("質問に答えてね！")]);
