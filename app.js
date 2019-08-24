@@ -83,7 +83,19 @@ app.post('/callback', function(req, res) {
       // var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
-      sendMessage.send(req, [messageTemplate.textMessage(message_text)]);
+      //sendMessage.send(req, [messageTemplate.textMessage(message_text)]);
+      
+      var message = ""
+      if(message_text == "犬"){
+        message = "わんわん"
+      }
+      if(message_text == "猫"){
+        message = "にゃお"
+      }
+      if(message_text == "鹿"){
+        message = "ケーンケン"
+      }
+      sendMessage.send(req, [messageTemplate.textMessage(message)]);
 
       // データベースを使う場合、下記のコードはコメントアウトしてください
       //sendMessage.send(req, [messageTemplate.textMessage(message), messageTemplate.quickMessage("質問に答えてね！")]);
