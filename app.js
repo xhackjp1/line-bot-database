@@ -112,7 +112,8 @@ app.post('/callback', function(req, res) {
         var text = result['name'] + "\n" + result['address'] + "\n" + result['opentime'];
         sendMessage.send(req, [
           messageTemplate.textMessage(text),
-          messageTemplate.imageMessage(result['shop_image1'])
+          messageTemplate.imageMessage(result['shop_image1']),
+          messageTemplate.imageMessage(result['shop_image2'])
         ]);
         return;
       });
