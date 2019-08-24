@@ -85,10 +85,10 @@ app.post('/callback', function(req, res) {
       //var message = message_text + "[" + message_text.length + "文字]";
       //sendMessage.send(req, [messageTemplate.textMessage(message_text)]);
       
-      var url = "https://i.imgur.com/I5AZqHV.png"
-      sendMessage.send(req, [
-        messageTemplate.imageMessage(url)
-      ]);
+      // var url = "https://i.imgur.com/I5AZqHV.png"
+      // sendMessage.send(req, [
+      //   messageTemplate.imageMessage(url)
+      // ]);
 
       // データベースを使う場合、下記のコードはコメントアウトしてください
       //sendMessage.send(req, [messageTemplate.textMessage(message), messageTemplate.quickMessage("質問に答えてね！")]);
@@ -108,14 +108,14 @@ app.post('/callback', function(req, res) {
       ////////////////////
       // 住所 改行 キーワード
       // のフォーマットでメッセージを送ってください
-      // gnavi.api(req.body, message_text, function(result) {
-      //   var text = "おはようございます"; //result['name'] + "\n" + result['address'];
-      //   sendMessage.send(req, [
-      //     messageTemplate.textMessage(text)
-      //     //messageTemplate.imageMessage(result['shop_image1'], result['shop_image1'])
-      //   ]);
-      //   return;
-      // });
+      gnavi.api(req.body, message_text, function(result) {
+        var text = result['name'] + "\n" + result['address'] + "\n" + result['opentime'];
+        sendMessage.send(req, [
+          messageTemplate.textMessage(text),
+          messageTemplate.imageMessage(result['shop_image1'])
+        ]);
+        return;
+      });
 
       return;
     }
