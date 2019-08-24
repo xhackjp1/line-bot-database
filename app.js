@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
   // herokuのルートディレクトリにアクセスした時に表示される
-  res.send('<h1>hello world</h1>');
+  res.send('<h1>LINE BOT の開発セミナーへようこそ</h1>');
 });
 
 app.get('/index', function(request, response) {
