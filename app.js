@@ -8,6 +8,7 @@ var path = require("path");
 
 var sendMessage = require('./lib/sendMessage.js');
 var messageTemplate = require('./lib/messageTemplate.js');
+var gnavi = require('./lib/gnaviapi.js');
 //var pgManager = require('./lib/postgresManager.js'); // データベースを使う時に必要
 
 // utilモジュールを使います。
@@ -93,6 +94,20 @@ app.post('/callback', function(req, res) {
 
       // データベースを使って返信する場合、こちらのコメントを解除してください
       //databaseSample(req, message_text);
+      
+      ////////////////////
+      // ぐるなびAPIパート //
+      ////////////////////
+      // 住所 改行 キーワード
+      // のフォーマットでメッセージを送ってください
+      gnavi.api(req.body, message_text, function(result) {
+        var text = result['name'] + "\n" + result['address'];
+        sendMessage.send(req, [
+          messageTemplate.textMessage(text),
+          messageTemplate.imageMessage(result['shop_image1'], result['shop_image1'])
+        ]);
+        return;
+      });
 
       return;
     }
