@@ -106,16 +106,12 @@ app.post('/callback', function(req, res) {
       // 住所 改行 キーワード
       // のフォーマットでメッセージを送ってください
       gnavi.api(req.body, message_text, function(result) {
-        // if("error" in result){
-        //   messageTemplate.textMessage(result['error']);
-        //   return;
-        // }
         var text = result['name']; // + "\n" + result['address'] + "\n" + result['opentime'];
         sendMessage.send(req, [
           messageTemplate.textMessage(text),
-          messageTemplate.textMessage(result['url'])
-          // messageTemplate.imageMessage(result['shop_image1']),
-          // messageTemplate.imageMessage(result['shop_image2'])
+          messageTemplate.textMessage(result['url']),
+          messageTemplate.imageMessage(result['shop_image1']),
+          messageTemplate.imageMessage(result['shop_image2'])
         ]);
         return;
       });
