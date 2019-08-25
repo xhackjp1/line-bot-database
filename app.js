@@ -55,11 +55,6 @@ app.post('/callback', function(req, res) {
           return;
         }
 
-        // 特定の単語に反応させたい場合
-        //if (event_data['message']['text'].indexOf('please input some word') == -1) {
-        //    return;
-        //}
-
         // ユーザIDを取得する
         var user_id = event_data['source']['userId'];
         var message_id = event_data['message']['id'];
