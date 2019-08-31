@@ -20,6 +20,7 @@
     "postgresql": "0.0.1",
     "psql": "0.0.1",
     "request": "^2.75.0",
-    "watson-developer-cloud": "^3.18.4"
+    "watson-developer-cloud": "^3.18.4",
+    "underscore.string": ">=3.3.5"
   }
 }
