@@ -76,11 +76,10 @@ app.post('/callback', function(req, res) {
     function(req, displayName, message_id, message_type, message_text) {
 
       var message = "";
-      
-      //var message = "hello, " + displayName + "さん"; // helloと返事する
-      //var message = message_text; // おうむ返しする
-      //var message = message_text + "[" + message_text.length + "文字]";
-      //sendMessage.send(req, [messageTemplate.textMessage(message_text)]);
+      message = "hello, " + displayName + "さん"; // helloと返事する
+      // message = message_text; // おうむ返しする
+      // message = message_text + "[" + message_text.length + "文字]";
+      sendMessage.send(req, [messageTemplate.textMessage(message_text)]);
       
       // var url = "https://i.imgur.com/I5AZqHV.png"
       // sendMessage.send(req, [
@@ -105,16 +104,16 @@ app.post('/callback', function(req, res) {
       ////////////////////
       // 住所 改行 キーワード
       // のフォーマットでメッセージを送ってください
-      gnavi.api(req.body, message_text, function(result) {
-        var text = result['name']; // + "\n" + result['address'] + "\n" + result['opentime'];
-        sendMessage.send(req, [
-          messageTemplate.textMessage(text),
-          messageTemplate.textMessage(result['url'])
-          // messageTemplate.imageMessage(result['shop_image1']),
-          // messageTemplate.imageMessage(result['shop_image2'])
-        ]);
-        return;
-      });
+      // gnavi.api(req.body, message_text, function(result) {
+      //   var text = result['name']; // + "\n" + result['address'] + "\n" + result['opentime'];
+      //   sendMessage.send(req, [
+      //     messageTemplate.textMessage(text),
+      //     messageTemplate.textMessage(result['url'])
+      //     // messageTemplate.imageMessage(result['shop_image1']),
+      //     // messageTemplate.imageMessage(result['shop_image2'])
+      //   ]);
+      //   return;
+      // });
 
       return;
     }
